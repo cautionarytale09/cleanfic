@@ -11,6 +11,7 @@ class ProfileIndex:
     
     def getUserByProfileName(profileName : str):
         return self.root['profiles'].get(profileName)
+        
 class Database:
     def __init__(self):
         self.storage = ZODB.FileStorage.FileStorage('databse.fs')
@@ -25,7 +26,4 @@ class Database:
     
     def ProfileIndex():
         return self.profileIndex
-
-        
-
 Database()
