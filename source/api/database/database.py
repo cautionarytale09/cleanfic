@@ -3,8 +3,8 @@ import BTrees
 import transaction
 
 class ProfileIndex:
-    def __init__(root):
-        if root['profiles'] not in root:
+    def __init__(self, root):
+        if 'profiles' not in root:
             root['profiles'] = BTrees.OOBTree.BTree()
         transaction.commit()
         self.profiles = root['profiles']
@@ -18,13 +18,13 @@ class Database:
         self.connection = self.db.open()
         self.root = self.connection.root()
 
-        if self.root['users'] not in self.root:
+        if 'users' not in self.root:
             self.root['users'] = BTrees.OOBTree.BTree()
 
-        self.ProfileIndex = ProfileIndex()
+        self.profileIndex = ProfileIndex(self.root)
     
     def ProfileIndex():
-        return self.ProfileIndex
+        return self.profileIndex
 
         
 
